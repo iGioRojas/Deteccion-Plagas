@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyect AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="container w-11/12 mx-auto py-4">
+        <header>
+            <h1 class="text-3xl font-bold underline">Detección de plagas</h1>
+        </header>
+            <label for="image" class="bg-blue-700 rounded p-4 text-white cursor-pointer" id="uploadImg"><input type="file" id="image" class="hidden">Subir una imagen</label>
+            <button class="bg-blue-700 rounded p-4 text-white" id="takePhoto">Abrir cámara</button>
+            <div id="previsualizar">
+                <canvas id="canvas" class="p-1 bg-white border rounded" width="500" height="500"></canvas>
+            </div>
+            <input type="submit" class="bg-blue-700 rounded p-4 text-white">
+        <script src="/static/script.js"></script>
+      </div>
+</body>
+</html>
