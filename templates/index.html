@@ -8,17 +8,32 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <div class="container w-11/12 mx-auto py-4">
+    <div class="container w-11/12 h-screen mx-auto flex flex-col justify-between">
         <header>
             <h1 class="text-3xl font-bold underline">Detección de plagas</h1>
         </header>
-            <label for="image" class="bg-blue-700 rounded p-4 text-white cursor-pointer" id="uploadImg"><input type="file" id="image" class="hidden">Subir una imagen</label>
-            <button class="bg-blue-700 rounded p-4 text-white" id="takePhoto">Abrir cámara</button>
-            <div id="previsualizar">
+
+        <div class="container my-3 flex flex-col items-center">
+            <div class="acciones mb-3">
+                <label for="image" class="bg-blue-700 rounded p-4 text-white cursor-pointer" id="uploadImg"><input type="file" id="image" class="hidden">Subir una imagen</label>
+                <label class="bg-blue-700 rounded p-4 text-white cursor-pointer" id="takePhoto">Abrir cámara</label>
+            </div>
+            <div id="previsualizar" class="my-3">
                 <canvas id="canvas" class="p-1 bg-white border rounded" width="500" height="500"></canvas>
             </div>
-            <input type="submit" class="bg-blue-700 rounded p-4 text-white">
-        <script src="/static/script.js"></script>
-      </div>
+            <input id="submit" type="submit" class="bg-green-700 rounded p-4 text-white cursor-pointer">
+        </div>
+
+        <div class="predicion">
+        </div>
+            <!--Footer-->
+        <footer class="p-4 mt-3 bg-white rounded-lg shadow md:px-6 md:py-8 dark:bg-gray-800">
+            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://github.com/iGioRojas/Deteccion-Plagas" target="_blank" class="hover:underline">|| Enlace al Repositorio</a>
+        </span>
+        </footer>
+        <!--Footer-->
+    </div>
+    </div>
+    <script src="/static/script.js"></script>
 </body>
 </html>

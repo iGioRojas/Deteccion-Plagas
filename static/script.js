@@ -1,7 +1,10 @@
 const imgSeleccionada = document.getElementById("image"),
   canvas       = document.querySelector('#canvas'),
   tomarFotoBtn = document.getElementById("takePhoto"),
-  previsualizar = document.getElementById("previsualizar");;
+  previsualizar = document.getElementById("previsualizar"),
+  enviarBtn = document.getElementById("submit");
+
+var canvasIsEmpty = true;
   
 imgSeleccionada.addEventListener("change", () => {
   const archivos = imgSeleccionada.files;
@@ -9,7 +12,7 @@ imgSeleccionada.addEventListener("change", () => {
   canvas.width=canvas.width;
   var ctx = canvas.getContext("2d");
   if (!archivos || !archivos.length) {
-      imagenPrevisualizacion.src = "";
+      canvas.width=canvas.width;
       return;
     }
     const primerArchivo = archivos[0];
@@ -25,6 +28,7 @@ imgSeleccionada.addEventListener("change", () => {
     let y = (canvas.height / 2) - (newHeight / 2);
 
       ctx.drawImage(img, x, y, newWidth, newHeight);
+      canvasIsEmpty = false;
     }
 });
 
@@ -58,11 +62,41 @@ function encenderCamara(){
       previsualizar.innerHTML = "";
       previsualizar.appendChild(canvas);
       var ctx = canvas.getContext("2d");
+      canvas.width=canvas.width;//limpiar img anterior
       ctx.drawImage(video,0,0,video.videoWidth,video.videoHeight);
       video.srcObject.getTracks()[0].stop();
+      canvasIsEmpty = false;
     })
   })
   .catch((e)=>{
     console.log(e);
   })
 }
+
+enviarBtn.addEventListener("click", ()=>{
+  if(canvasIsEmpty){
+    console.log("The canvas is empty");
+    return;
+  }
+
+  canvas.toBlob(function(blob) {
+    var formData = new FormData();
+    formData.append("file", blob, "testImage.jpg");
+
+    fetch("/upload", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      let pred = document.getElementsByClassName("predicion")[0];
+      pred.innerHTML = data.message;
+    })
+    .catch(error => {
+        console.error(error);
+    });
+  }, "image/jpg");
+
+  
+  console.log("The canvas is not empty");
+});
