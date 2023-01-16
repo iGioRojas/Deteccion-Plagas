@@ -15,7 +15,7 @@ def upload():
     file.save(file.filename)
 
     modelo = load_model("./static/modelo_plagas.h5")
-    one_hot = ["Picudo Negro", "Nematodo", "Insecto Génerico", "No existe insecto en la imagen"]
+    one_hot = ["Picudo Negro", "Nematodo", "No es plaga", "No existe insecto en la imagen"]
     imgDemo = cv2.imread("./"+file.filename)
     imgDemo = cv2.cvtColor(imgDemo, cv2.COLOR_BGR2RGB)
     imgDemo = cv2.resize(imgDemo, (224, 224))

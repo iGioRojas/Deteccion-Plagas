@@ -5,6 +5,8 @@ const imgSeleccionada = document.getElementById("image"),
   enviarBtn = document.getElementById("submit");
 
 var canvasIsEmpty = true;
+var pred = document.getElementsByClassName("predicion")[0];
+
   
 imgSeleccionada.addEventListener("change", () => {
   const archivos = imgSeleccionada.files;
@@ -29,6 +31,7 @@ imgSeleccionada.addEventListener("change", () => {
 
       ctx.drawImage(img, x, y, newWidth, newHeight);
       canvasIsEmpty = false;
+      pred.innerHTML = "";
     }
 });
 
@@ -66,6 +69,7 @@ function encenderCamara(){
       ctx.drawImage(video,0,0,video.videoWidth,video.videoHeight);
       video.srcObject.getTracks()[0].stop();
       canvasIsEmpty = false;
+      pred.innerHTML = "";
     })
   })
   .catch((e)=>{
@@ -90,7 +94,9 @@ enviarBtn.addEventListener("click", ()=>{
     .then(response => response.json())
     .then(data => {
       let pred = document.getElementsByClassName("predicion")[0];
-      pred.innerHTML = data.message;
+      pred.innerHTML = `<h2 class="font-semibold text-4xl mb-4">
+      Predicción: ${data.message}
+    </h2>`
     })
     .catch(error => {
         console.error(error);
