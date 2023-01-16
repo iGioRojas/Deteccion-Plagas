@@ -6,3 +6,10 @@ Detección de las plagas Nematodos y Picudo Negro en el cultivo de plátano ecua
 
 # Instalar los paquetes en requirements.txt 
 ```pip install -r requirements.txt```
+
+
+# Iniciar Sistema
+```python app.py```
+
+# Enlace a repo
+[Deteccion-Plagas](https://github.com/iGioRojas/Deteccion-Plagas/tree/master)
